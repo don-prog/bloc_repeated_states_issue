@@ -28,7 +28,10 @@ class _SecondPageState extends State<SecondPage> {
       child: Center(
         child: RaisedButton(
           child: Text('Go to first page'),
-          onPressed: () => Navigator.of(context).pushNamed('first_page'),
+          onPressed: () {
+            Navigator.of(context).popUntil((route) => route.isFirst);
+            Navigator.of(context).pushReplacementNamed('first_page');
+          },
         ),
       ),
     );

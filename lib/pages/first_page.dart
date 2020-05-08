@@ -21,6 +21,7 @@ class _FirstPageState extends State<FirstPage> {
 
     _firstPageBloc = BlocProvider.of<FirstPageBloc>(context);
 
+    print('_FirstPageState.initState');
     print('_firstPageBloc.add(FirstFirstPageEvent())');
     _firstPageBloc.add(FirstFirstPageEvent());
   }
