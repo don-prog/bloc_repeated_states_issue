@@ -8,28 +8,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
 
-  runApp(BlocProvider<MainBloc>(
-      create: (_) => sl(),
-      child: MyApp()));
+  runApp(
+    BlocProvider<MainBloc>(
+      create: (_) => sl.get<MainBloc>(),
+      child: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
-  MainBloc _mainBloc;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _mainBloc = BlocProvider.of<MainBloc>(context);
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,6 +26,7 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: 'first_page',
       onGenerateRoute: RouteGenerator.generateRoute,
+      onUnknownRoute: RouteGenerator.generateUnknownRoute,
     );
   }
 }

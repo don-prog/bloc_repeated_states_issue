@@ -12,7 +12,6 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-
   FirstPageBloc _firstPageBloc;
 
   @override
@@ -32,26 +31,27 @@ class _FirstPageState extends State<FirstPage> {
       appBar: AppBar(
         title: Text('First page'),
       ),
-      body: buildBody(),
+      body: const _FirstPageBody(),
     );
   }
+}
 
-  Widget buildBody(){
-    print('FirstPage.buildBody()');
-    return Container(
-      child: BlocListener<MainBloc, MainState>(
-        listener: (context, state){
-          if(state is FirstMainState)
-            print('First page received FirstState');
-        },
-        child: Center(
-          child: RaisedButton(
-            child: Text('Go to second page'),
-            onPressed: () {
-              Navigator.of(context).popUntil((route) => route.isFirst);
-              Navigator.of(context).pushReplacementNamed('second_page');
-            },
-          ),
+class _FirstPageBody extends StatelessWidget {
+  const _FirstPageBody({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<MainBloc, MainState>(
+      listener: (context, state) {
+        if (state is FirstMainState) print('First page received FirstState');
+      },
+      child: Center(
+        child: RaisedButton(
+          child: Text('Go to second page'),
+          onPressed: () async {
+            final result = await Navigator.of(context).pushNamed('second_page');
+            context.bloc<FirstPageBloc>().add(SecondPagePopped());
+          },
         ),
       ),
     );
