@@ -9,11 +9,15 @@ class FirstPageBloc extends Bloc<FirstPageEvent, FirstPageState> {
 
   @override
   Stream<FirstPageState> mapEventToState(
-      FirstPageEvent event,
-      ) async* {
-    if(event is FirstFirstPageEvent){
+    FirstPageEvent event,
+  ) async* {
+    if (event is FirstFirstPageEvent) {
       print('sl<MainBloc>().add(FirstMainEvent())');
       sl<MainBloc>().add(FirstMainEvent());
+    }
+
+    if (event is SecondPagePopped) {
+      print('Second page was popped!');
     }
   }
 }

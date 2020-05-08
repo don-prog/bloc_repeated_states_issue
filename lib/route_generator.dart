@@ -8,14 +8,27 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case 'first_page':
-        return PageRouteBuilder(pageBuilder: (_c, _a1, _a2) =>
-            BlocProvider<FirstPageBloc>(
-                create: (_) => FirstPageBloc(),
-                child: FirstPage()
-            ));
+        return PageRouteBuilder(
+          pageBuilder: (_c, _a1, _a2) => BlocProvider<FirstPageBloc>(
+            create: (_) => FirstPageBloc(),
+            child: FirstPage(),
+          ),
+        );
 
       case 'second_page':
         return PageRouteBuilder(pageBuilder: (_c, _a1, _a2) => SecondPage());
+      default:
+        return null;
     }
+  }
+
+  static Route<dynamic> generateUnknownRoute(RouteSettings settings) {
+    return PageRouteBuilder(
+      pageBuilder: (_c, _a1, _a2) => const Scaffold(
+        body: Center(
+          child: Text('Unknown route'),
+        ),
+      ),
+    );
   }
 }
