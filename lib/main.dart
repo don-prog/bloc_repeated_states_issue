@@ -1,4 +1,5 @@
 import 'package:bloc_repeated_states_issue/bloc/bloc.dart';
+import 'package:bloc_repeated_states_issue/bottom_navigation/bottom_navigation_page.dart';
 import 'package:bloc_repeated_states_issue/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_repeated_states_issue/injection_container.dart';
@@ -37,8 +38,9 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: 'first_page',
-      onGenerateRoute: RouteGenerator.generateRoute,
+      home: BottomNavigationPage(key: GlobalKey<BottomNavigationState>(),)
+
+
     );
   }
 }

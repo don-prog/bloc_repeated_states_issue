@@ -21,7 +21,7 @@ class _FirstPageState extends State<FirstPage> {
 
     _firstPageBloc = BlocProvider.of<FirstPageBloc>(context);
 
-    print('_FirstPageState.initState');
+    print('_FirstPageState.initState()');
     print('_firstPageBloc.add(FirstFirstPageEvent())');
     _firstPageBloc.add(FirstFirstPageEvent());
   }
@@ -45,12 +45,8 @@ class _FirstPageState extends State<FirstPage> {
             print('First page received FirstState');
         },
         child: Center(
-          child: RaisedButton(
-            child: Text('Go to second page'),
-            onPressed: () {
-              Navigator.of(context).popUntil((route) => route.isFirst);
-              Navigator.of(context).pushReplacementNamed('second_page');
-            },
+          child: Text(
+            'Just first page'
           ),
         ),
       ),
