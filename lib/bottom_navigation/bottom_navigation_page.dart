@@ -6,7 +6,6 @@ import 'bottom_navigation.dart';
 
 GlobalKey<BottomNavigationState> bottomNavigationPageKey;
 
-
 class BottomNavigationPage extends UniqueWidget<BottomNavigationState> {
   BottomNavigationPage({GlobalKey key}) : super(key: key){
     bottomNavigationPageKey = key;
@@ -21,6 +20,7 @@ class BottomNavigationState extends State<BottomNavigationPage> {
   TabItem currentTab = TabItem.first;
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
+  final Stopwatch _stopwatch = Stopwatch();
 
   void _selectTab(TabItem tabItem, {Object arguments}) {
     if (tabItem == currentTab) {
@@ -50,6 +50,14 @@ class BottomNavigationState extends State<BottomNavigationPage> {
     return BottomNavigation(
       currentTab: currentTab,
       onSelectTab: (tabItem) {
+
+        if(tabItem == TabItem.second)
+          _stopwatch.start();
+        else if(tabItem == TabItem.first){
+          print('Elapsed milliseconds for changing tabs: ${_stopwatch.elapsedMilliseconds}');
+          _stopwatch.stop();
+          _stopwatch.reset();
+        }
 
         _selectTab(tabItem,);
       },
