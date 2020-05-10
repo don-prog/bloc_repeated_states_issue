@@ -12,7 +12,6 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-
   FirstPageBloc _firstPageBloc;
 
   @override
@@ -27,6 +26,12 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   @override
+  void dispose() {
+    print('==fist page disposed');
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -36,18 +41,15 @@ class _FirstPageState extends State<FirstPage> {
     );
   }
 
-  Widget buildBody(){
+  Widget buildBody() {
     print('FirstPage.buildBody()');
     return Container(
       child: BlocListener<MainBloc, MainState>(
-        listener: (context, state){
-          if(state is FirstMainState)
-            print('First page received FirstState');
+        listener: (context, state) {
+          if (state is FirstMainState) print('First page received FirstState');
         },
         child: Center(
-          child: Text(
-            'Just first page'
-          ),
+          child: Text('Just first page'),
         ),
       ),
     );

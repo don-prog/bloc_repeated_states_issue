@@ -21,14 +21,16 @@ class _SecondPageState extends State<SecondPage> {
     );
   }
 
+  @override
+  void dispose() {
+    print('==second page disposed');
+    super.dispose();
+  }
 
-
-  Widget buildBody(){
+  Widget buildBody() {
     return Container(
       child: Center(
-        child: Text(
-            'Just second page'
-        ),
+        child: Text('Just second page'),
       ),
     );
   }
